@@ -1,0 +1,235 @@
+Couldn't get public ip address (most likely max query)Processor: Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+system: Windows 10.0.22621
+Machine: AMD64
+Hostname: DESKTOP-FHDPBGD
+Private IP Address: 192.168.1.133
+Couldn't get public ip address (most likely max query)Processor: Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+system: Windows 10.0.22621
+Machine: AMD64
+Hostname: DESKTOP-FHDPBGD
+Private IP Address: 192.168.1.133
+Couldn't get public ip address (most likely max query)Processor: Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+system: Windows 10.0.22621
+Machine: AMD64
+Hostname: DESKTOP-FHDPBGD
+Private IP Address: 192.168.1.133
+Couldn't get public ip address (most likely max query)Processor: Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+system: Windows 10.0.22621
+Machine: AMD64
+Hostname: DESKTOP-FHDPBGD
+Private IP Address: 192.168.1.133
+Couldn't get public ip address (most likely max query)Processor: Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+system: Windows 10.0.22621
+Machine: AMD64
+Hostname: DESKTOP-FHDPBGD
+Private IP Address: 192.168.1.133
+Couldn't get public ip address (most likely max query)Processor: Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+system: Windows 10.0.22621
+Machine: AMD64
+Hostname: DESKTOP-FHDPBGD
+Private IP Address: 192.168.1.133
+Couldn't get public ip address (most likely max query)Processor: Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+system: Windows 10.0.22621
+Machine: AMD64
+Hostname: DESKTOP-FHDPBGD
+Private IP Address: 192.168.1.133
+Couldn't get public ip address (most likely max query)Processor: Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+system: Windows 10.0.22621
+Machine: AMD64
+Hostname: DESKTOP-FHDPBGD
+Private IP Address: 192.168.1.133
+Couldn't get public ip address (most likely max query)Processor: Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+system: Windows 10.0.22621
+Machine: AMD64
+Hostname: DESKTOP-FHDPBGD
+Private IP Address: 192.168.1.133
+Couldn't get public ip address (most likely max query)Processor: Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+system: Windows 10.0.22621
+Machine: AMD64
+Hostname: DESKTOP-FHDPBGD
+Private IP Address: 192.168.1.133
+Couldn't get public ip address (most likely max query)Processor: Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+system: Windows 10.0.22621
+Machine: AMD64
+Hostname: DESKTOP-FHDPBGD
+Private IP Address: 192.168.1.133
+Couldn't get public ip address (most likely max query)Processor: Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+system: Windows 10.0.22621
+Machine: AMD64
+Hostname: DESKTOP-FHDPBGD
+Private IP Address: 192.168.1.133
+Couldn't get public ip address (most likely max query)Processor: Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+system: Windows 10.0.22621
+Machine: AMD64
+Hostname: DESKTOP-FHDPBGD
+Private IP Address: 192.168.1.133
+Couldn't get public ip address (most likely max query)Processor: Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+system: Windows 10.0.22621
+Machine: AMD64
+Hostname: DESKTOP-FHDPBGD
+Private IP Address: 192.168.1.133
+Couldn't get public ip address (most likely max query)Processor: Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+system: Windows 10.0.22621
+Machine: AMD64
+Hostname: DESKTOP-FHDPBGD
+Private IP Address: 192.168.1.133
+Couldn't get public ip address (most likely max query)Processor: Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+system: Windows 10.0.22621
+Machine: AMD64
+Hostname: DESKTOP-FHDPBGD
+Private IP Address: 192.168.1.133
+Couldn't get public ip address (most likely max query)Processor: Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+system: Windows 10.0.22621
+Machine: AMD64
+Hostname: DESKTOP-FHDPBGD
+Private IP Address: 192.168.1.133
+Couldn't get public ip address (most likely max query)Processor: Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+system: Windows 10.0.22621
+Machine: AMD64
+Hostname: DESKTOP-FHDPBGD
+Private IP Address: 192.168.1.133
+Couldn't get public ip address (most likely max query)Processor: Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+system: Windows 10.0.22621
+Machine: AMD64
+Hostname: DESKTOP-FHDPBGD
+Private IP Address: 192.168.1.133
+Couldn't get public ip address (most likely max query)Processor: Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+system: Windows 10.0.22621
+Machine: AMD64
+Hostname: DESKTOP-FHDPBGD
+Private IP Address: 192.168.1.133
+Couldn't get public ip address (most likely max query)Processor: Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+system: Windows 10.0.22621
+Machine: AMD64
+Hostname: DESKTOP-FHDPBGD
+Private IP Address: 192.168.1.133
+Couldn't get public ip address (most likely max query)Processor: Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+system: Windows 10.0.22621
+Machine: AMD64
+Hostname: DESKTOP-FHDPBGD
+Private IP Address: 192.168.1.133
+Couldn't get public ip address (most likely max query)Processor: Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+system: Windows 10.0.22621
+Machine: AMD64
+Hostname: DESKTOP-FHDPBGD
+Private IP Address: 192.168.1.133
+Couldn't get public ip address (most likely max query)Processor: Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+system: Windows 10.0.22621
+Machine: AMD64
+Hostname: DESKTOP-FHDPBGD
+Private IP Address: 192.168.1.133
+Couldn't get public ip address (most likely max query)Processor: Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+system: Windows 10.0.22621
+Machine: AMD64
+Hostname: DESKTOP-FHDPBGD
+Private IP Address: 192.168.1.143
+Couldn't get public ip address (most likely max query)Processor: Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+system: Windows 10.0.22621
+Machine: AMD64
+Hostname: DESKTOP-FHDPBGD
+Private IP Address: 192.168.1.143
+Couldn't get public ip address (most likely max query)Processor: Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+system: Windows 10.0.22621
+Machine: AMD64
+Hostname: DESKTOP-FHDPBGD
+Private IP Address: 192.168.56.1
+Couldn't get public ip address (most likely max query)Processor: Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+system: Windows 10.0.22621
+Machine: AMD64
+Hostname: DESKTOP-FHDPBGD
+Private IP Address: 192.168.56.1
+Couldn't get public ip address (most likely max query)Processor: Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+system: Windows 10.0.22621
+Machine: AMD64
+Hostname: DESKTOP-FHDPBGD
+Private IP Address: 192.168.238.248
+Couldn't get public ip address (most likely max query)Processor: Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+system: Windows 10.0.22621
+Machine: AMD64
+Hostname: DESKTOP-FHDPBGD
+Private IP Address: 192.168.238.248
+Couldn't get public ip address (most likely max query)Processor: Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+system: Windows 10.0.22621
+Machine: AMD64
+Hostname: DESKTOP-FHDPBGD
+Private IP Address: 192.168.238.248
+Couldn't get public ip address (most likely max query)Processor: Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+system: Windows 10.0.22621
+Machine: AMD64
+Hostname: DESKTOP-FHDPBGD
+Private IP Address: 192.168.1.133
+Couldn't get public ip address (most likely max query)Processor: Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+system: Windows 10.0.22621
+Machine: AMD64
+Hostname: DESKTOP-FHDPBGD
+Private IP Address: 192.168.1.133
+Couldn't get public ip address (most likely max query)Processor: Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+system: Windows 10.0.22621
+Machine: AMD64
+Hostname: DESKTOP-FHDPBGD
+Private IP Address: 192.168.1.133
+Couldn't get public ip address (most likely max query)Processor: Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+system: Windows 10.0.22621
+Machine: AMD64
+Hostname: DESKTOP-FHDPBGD
+Private IP Address: 192.168.1.133
+Couldn't get public ip address (most likely max query)Processor: Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+system: Windows 10.0.22621
+Machine: AMD64
+Hostname: DESKTOP-FHDPBGD
+Private IP Address: 192.168.1.133
+Couldn't get public ip address (most likely max query)Processor: Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+system: Windows 10.0.22621
+Machine: AMD64
+Hostname: DESKTOP-FHDPBGD
+Private IP Address: 192.168.1.133
+Couldn't get public ip address (most likely max query)Processor: Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+system: Windows 10.0.22621
+Machine: AMD64
+Hostname: DESKTOP-FHDPBGD
+Private IP Address: 192.168.1.133
+Couldn't get public ip address (most likely max query)Processor: Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+system: Windows 10.0.22621
+Machine: AMD64
+Hostname: DESKTOP-FHDPBGD
+Private IP Address: 192.168.56.1
+Couldn't get public ip address (most likely max query)Processor: Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+system: Windows 10.0.22621
+Machine: AMD64
+Hostname: DESKTOP-FHDPBGD
+Private IP Address: 192.168.56.1
+Couldn't get public ip address (most likely max query)Processor: Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+system: Windows 10.0.22621
+Machine: AMD64
+Hostname: DESKTOP-FHDPBGD
+Private IP Address: 192.168.1.164
+Couldn't get public ip address (most likely max query)Processor: Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+system: Windows 10.0.22621
+Machine: AMD64
+Hostname: DESKTOP-FHDPBGD
+Private IP Address: 192.168.1.164
+Couldn't get public ip address (most likely max query)Processor: Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+system: Windows 10.0.22621
+Machine: AMD64
+Hostname: DESKTOP-FHDPBGD
+Private IP Address: 192.168.1.164
+Couldn't get public ip address (most likely max query)Processor: Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+system: Windows 10.0.22621
+Machine: AMD64
+Hostname: DESKTOP-FHDPBGD
+Private IP Address: 192.168.1.164
+Couldn't get public ip address (most likely max query)Processor: Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+system: Windows 10.0.22621
+Machine: AMD64
+Hostname: DESKTOP-FHDPBGD
+Private IP Address: 192.168.1.164
+Couldn't get public ip address (most likely max query)Processor: Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+system: Windows 10.0.22621
+Machine: AMD64
+Hostname: DESKTOP-FHDPBGD
+Private IP Address: 192.168.1.164
+Couldn't get public ip address (most likely max query)Processor: Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+system: Windows 10.0.22621
+Machine: AMD64
+Hostname: DESKTOP-FHDPBGD
+Private IP Address: 192.168.1.133

